@@ -18,7 +18,7 @@ export const ItemsSlice = createSlice({
                     quantity: state.items[index].quantity + action.payload.quantity,
                     total_cost: state.items[index].total_cost + action.payload.total_cost,
                     total_price: state.items[index].total_price + action.payload.total_price,
-                    one_item_average_price: (state.items[index].total_price + action.payload.total_price) / (state.items[index].quantity + action.payload.quantity)
+                    one_item_average_price: Math.ceil((state.items[index].total_price + action.payload.total_price) / (state.items[index].quantity + action.payload.quantity))
                 }
             } else {
                 state.items.push({
@@ -40,7 +40,7 @@ export const ItemsSlice = createSlice({
                     quantity: state.items[index].quantity - action.payload.delete_quantity,
                     total_cost: state.items[index].total_cost - (state.items[index].total_cost / state.items[index].quantity) * action.payload.delete_quantity,
                     total_price: state.items[index].total_price - state.items[index].one_item_average_price * action.payload.delete_quantity,
-                    one_item_average_price: (state.items[index].total_price - state.items[index].one_item_average_price * action.payload.delete_quantity) / (state.items[index].quantity - action.payload.delete_quantity)
+                    one_item_average_price: Math.ceil((state.items[index].total_price - state.items[index].one_item_average_price * action.payload.delete_quantity) / (state.items[index].quantity - action.payload.delete_quantity))
                 }
             } else if (state.items[index].quantity === action.payload.delete_quantity) {
                 state.items.splice(index, 1)

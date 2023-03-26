@@ -21,20 +21,23 @@ const ItemSalePage = () => {
         setinputValue(0)
     }
     return (
-        <div>
-            <div className="max-w-fit p-2 m-2 h-12 h-fit rounded-lg bg-red-500 hover:-translate-y-1 hover:scale-101 hover:brightness-150 duration-300">
+        <div className="mt-8">
+            <div className="max-w-fit p-2 m-2 h-12 h-fit rounded-lg bg-red-500 hover:brightness-150 duration-300">
                 Общий баланс: {balance}
             </div>
-            {items.map((item) => (
-                <div key={item.id} className="max-w-fit p-2 m-2 h-12 h-fit rounded-lg bg-red-200 hover:brightness-110 duration-300">
-                    <p>Наименование товара: {item.name}</p>
-                    <p>Количество товара на складе: {item.quantity}</p>
-                    <p>Сумма от продажи: {inputValue ? inputValue * item.one_item_average_price : 0}</p>
-                    <span>Количество для продажи: </span>
-                    <input type="number" onChange={(e) => setinputValue(e.target.valueAsNumber)} value={inputValue} className="max-w-fit p-1 m-2 h-12 h-fit rounded-lg border-2 border-blue-500/100"/>
-                    <button onClick={() => saleBtn(item.id, item.quantity, inputValue, item.one_item_average_price * inputValue, "Продажа", item.name)} className="min-w-fit w-40 h-11 flex justify-center items-center bg-red-600 rounded-xl hover:brightness-200 duration-300">Продать</button>
-                </div>
-            ))}
+            <div className="grid grid-cols-3 gap-4">
+                {items.map((item) => (
+                    <div key={item.id} className="max-w-fit p-2 m-2 h-12 h-fit rounded-lg bg-red-200 hover:brightness-110 duration-300 flex justify-center items-center flex-col">
+                        <p>Наименование товара: {item.name}</p>
+                        <p>Количество товара на складе: {item.quantity}</p>
+                        <p>Сумма от продажи: {inputValue ? Math.ceil(inputValue * item.one_item_average_price) : 0}</p>
+                        <span>Количество для продажи: </span>
+                        <input type="number" onChange={(e) => setinputValue(e.target.valueAsNumber)} value={inputValue} className="max-w-fit p-1 m-2 h-12 h-fit rounded-lg border-2 border-blue-500/100" />
+                        <button onClick={() => saleBtn(item.id, item.quantity, inputValue, Math.ceil(item.one_item_average_price * inputValue), "Продажа", item.name)} className="min-w-fit w-40 h-11 flex justify-center items-center bg-red-600 rounded-xl hover:brightness-200 duration-300">Продать</button>
+                    </div>
+                ))}
+            </div>
+
         </div>
     )
 }
