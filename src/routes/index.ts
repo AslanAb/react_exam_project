@@ -1,0 +1,6 @@
+export {default as MainHeaderWithAllPages} from "./MainHeaderWithAllPages"
+export {default as About} from "./About"
+export {default as ItemAddPage} from "./ItemAddPage"
+export {default as ItemDeletePage} from "./ItemDeletePage"
+export {default as ItemSalePage} from "./ItemSalePage"
+export {default as HistoryPage} from "./HistoryPage"
