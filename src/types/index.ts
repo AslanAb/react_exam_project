@@ -25,10 +25,3 @@ export interface IHistory {
 export interface IHistories {
     history: IHistory[]
 }
-
-//?
-export interface IShopStore {
-    items: IItem[],
-    sum: number,
-    history: string[]
-}

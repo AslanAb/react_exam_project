@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { BalanceSlice } from "./reducers/BalanceSlice";
 import { HistorySlice } from "./reducers/HistorySlice";
-import { ItemsSlice } from "./reducers/itemsSlice";
+import { ItemsSlice } from "./reducers/ItemsSlice";
 
 
 export const store = configureStore({

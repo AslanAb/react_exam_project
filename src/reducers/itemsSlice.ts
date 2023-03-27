@@ -2,7 +2,32 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IItems, IItem } from "../types";
 
 const initialState: IItems = {
-    items: []
+    items: [
+        {
+            id: 1,
+            name: "Sony Experia 1",
+            total_cost: 4500000,
+            one_item_average_price: 990000,
+            total_price: 9900000,
+            quantity: 10
+        },
+        {
+            id: 2,
+            name: "Vivo Pro 8",
+            total_cost: 200000,
+            one_item_average_price: 250000,
+            total_price: 250000,
+            quantity: 1
+        },
+        {
+            id: 3,
+            name: "Xiaomi Mi 8",
+            total_cost: 2700000,
+            one_item_average_price: 200000,
+            total_price: 3000000,
+            quantity: 15
+        },
+    ]
 }
 
 export const ItemsSlice = createSlice({

@@ -1,12 +1,13 @@
 import { useRef } from "react"
-import { decBalance } from "../reducers/BalanceSlice"
+import { decBalance, incBalance } from "../reducers/BalanceSlice"
 import { addHistory } from "../reducers/HistorySlice"
-import { addItem } from "../reducers/itemsSlice"
+import { addItem } from "../reducers/ItemsSlice"
 import { useAppDispatch } from "../store"
 import { useAppSelector } from "../store"
 
 const ItemAddPage = () => {
     const balance = useAppSelector((state) => state.balanse.balance)
+    const balanceInputValue = useRef<number>(0)
     const name = useRef<string>("")
     const quantity = useRef<number>(0)
     const total_cost = useRef<number>(0)
@@ -24,13 +25,15 @@ const ItemAddPage = () => {
 
     return (
         <div className="mt-8">
-            <div className="max-w-fit p-2 m-2 h-12 h-fit rounded-lg bg-green-500 hover:brightness-150 duration-300">
-                Общий баланс: {balance}
+            <div className="max-w-fit p-2 m-2 h-fit rounded-lg bg-green-500 hover:brightness-110 duration-300 flex flex-col items-center">
+                <p>Общий баланс: {balance}</p>
+                <input type="number" onChange={(e) => (balanceInputValue.current = e.target.valueAsNumber)}/>
+                <button onClick={() => dispatch(incBalance({ incBalanceValue: balanceInputValue.current }))} className="min-w-fit w-40 h-11 flex justify-center items-center m-2 bg-green-600 rounded-xl hover:brightness-150 duration-300">Пополнить баланс</button>
             </div>
-            <input type="text" placeholder="Наименование товара" onChange={(e) => (name.current = e.target.value)} className="max-w-fit p-2 m-2 h-12 h-fit rounded-lg border-2 border-green-500/100"/>
-            <input type="number" placeholder="Количество" onChange={(e) => (quantity.current = e.target.valueAsNumber)} className="max-w-fit p-2 m-2 h-12 h-fit rounded-lg border-2 border-green-500/100"/>
-            <input type="number" placeholder="Стоимость закупки" onChange={(e) => (total_cost.current = e.target.valueAsNumber)} className="max-w-fit p-2 m-2 h-12 h-fit rounded-lg border-2 border-green-500/100"/>
-            <input type="number" placeholder="Стоимость продажи" onChange={(e) => (total_price.current = e.target.valueAsNumber)} className="max-w-fit p-2 m-2 h-12 h-fit rounded-lg border-2 border-green-500/100"/>
+            <input type="text" placeholder="Наименование товара" onChange={(e) => (name.current = e.target.value)} className="max-w-fit p-2 m-2 h-fit rounded-lg border-2 border-green-500/100" />
+            <input type="number" placeholder="Количество" onChange={(e) => (quantity.current = e.target.valueAsNumber)} className="max-w-fit p-2 m-2 h-fit rounded-lg border-2 border-green-500/100" />
+            <input type="number" placeholder="Стоимость закупки" onChange={(e) => (total_cost.current = e.target.valueAsNumber)} className="max-w-fit p-2 m-2 h-fit rounded-lg border-2 border-green-500/100" />
+            <input type="number" placeholder="Стоимость продажи" onChange={(e) => (total_price.current = e.target.valueAsNumber)} className="max-w-fit p-2 m-2 h-fit rounded-lg border-2 border-green-500/100" />
             <button onClick={() => addBtn(Math.random(), name.current, quantity.current, total_cost.current, total_price.current, total_price.current / quantity.current, "Покупка")} className="min-w-fit w-40 h-11 flex justify-center items-center m-2 bg-green-600 rounded-xl hover:brightness-200 duration-300">Добавить на склад</button>
         </div>
     )

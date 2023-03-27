@@ -1,6 +1,6 @@
 import { useAppDispatch } from "../store"
 import { useAppSelector } from "../store"
-import { deleteItem } from "../reducers/itemsSlice"
+import { deleteItem } from "../reducers/ItemsSlice"
 import { useState } from "react"
 import { addHistory } from "../reducers/HistorySlice"
 
